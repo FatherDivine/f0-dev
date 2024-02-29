@@ -1,2 +1,2 @@
-# F0-apps
-FlipperZero Apps
+# f0-dev  
+Flipper Zero Development
