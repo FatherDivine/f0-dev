@@ -3,6 +3,7 @@ REM Author: Father Divine
 REM Target: Tested on Windows 7/8/10/11 
 REM Version: 1.0
 REM Category: Grabber
+REM Language: DuckyScript
 REM Extracts the profile info w/ pass and saves to Flipper
 GUI r
 DELAY 500
