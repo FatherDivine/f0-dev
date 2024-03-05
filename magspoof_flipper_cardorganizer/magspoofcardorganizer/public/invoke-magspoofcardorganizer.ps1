@@ -201,15 +201,15 @@ function invoke-magspoofcardorganizer
     }else{
       $testdata = Get-Content $FileName
       write-verbose "The data first: $testdata" -Verbose
-      #Load the file
-      $FileData = Get-Content $FileName | foreach {if(!$_.StartsWith("#")){$i++;$tempdata = $_ ;New-Item -Path C:\temp\ -Name "test$i.txt" -Value "$MagFileHeader$_" -Force}}
+
+      #Load and process the file into individual files. What's left? split track2 & 3 from 1
+      $FileData = Get-Content $FileName | foreach {if(!$_.StartsWith("#")){$i++;$tempdata = $_ ;New-Item -Path C:\temp\ -Name "test$i.mag" -Value "$MagFileHeader$_" -Force}}
 
       Write-Verbose "Data: $FileData" -Verbose
       Read-Host "Pause"
 
       #Ask if auto mode or manual. Auto splits the data to separate cards with a +1 to the # at end
       #manual asks for the name scheme and does it using that.
-
 
 
 
