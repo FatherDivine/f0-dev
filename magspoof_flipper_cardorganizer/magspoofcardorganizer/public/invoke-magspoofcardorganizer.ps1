@@ -1,4 +1,4 @@
-#Template design originally remixed from https://github.com/MSAdministrator/TemplatePowerShellModule
+﻿#Template design originally remixed from https://github.com/MSAdministrator/TemplatePowerShellModule
 <#
 .SYNOPSIS
   Organizes magspoof-based data.
@@ -78,13 +78,25 @@ If (!(Test-Path "C:\Windows\Logs\magspoof_flipper_cardorganizer")){New-Item -Ite
 #Script Version
 $sScriptVersion = "0.1"
 
-#Variables
-$date = Get-Date -Format "-MM-dd-yyyy-HH-mm"
-
 #Log File Info
 $sLogPath = "C:\Windows\Logs\magspoof_flipper_cardorganizer"
 $sLogName = "invoke-magspoofcardorganizer$date.log"
 $sLogFile = Join-Path -Path $sLogPath -ChildPath $sLogName
+
+
+#Variables
+$date = Get-Date -Format "-MM-dd-yyyy-HH-mm"
+#$tn = 2 #track number
+$directoryPath = "C:\temp\mags\"
+$filePattern = "*.mag"
+
+$MagFileHeader= @(
+'#Created with invoke-magspoofcardorganizer.ps1 
+Filetype: Flipper Mag device
+Version: 1
+# Mag device track data
+Track 1: '
+)
 
 #Aliases
 New-Alias -Name magorganizer -value invoke-magspoofcardorganizer -Description "Organizes magspoof-based data."
@@ -99,6 +111,18 @@ function invoke-magspoofcardorganizer
     make sure you load the data into that file card after
     card in the native format the card reader writes (meaning
     don't press enter or any buttons in between card reads).
+  .EXAMPLE
+    invoke-magspoofcardorganizer -Filename "C:\mags\mags.dump"
+
+    This will load a file named "mags.dump" into the script 
+    for processing. The script will split each line into
+    separate files (for each individual mag card) and also
+    put each track into it's own track line. The best way to
+    make a dump is just open notepad and start scanning cards
+    on a HID-enabled reader (like the MSR90). It will output
+    all the data to that notepad. Just save and load in this
+    script.
+
 #>
   [cmdletbinding()]
   param(
@@ -123,7 +147,7 @@ function invoke-magspoofcardorganizer
 
   # load signatures and make members available
   $API = Add-Type -MemberDefinition $signatures -Name 'Win32' -Namespace API -PassThru
-    
+
   # create output file
   $null = New-Item -Path $Path -ItemType File -Force
 
@@ -137,68 +161,66 @@ function invoke-magspoofcardorganizer
   Running script version $ScriptVersion.`n`r
   `n`r
   ***************************************************************************************************`n`r
-  " -Verbose 
+  " -Verbose
 }
   process{
     If ($null -eq $FileName){  
-      try{
-        Write-Host 'Recording key presses. Press CTRL+C to see results.' -ForegroundColor Red
-
-        # create endless loop. When user presses CTRL+C, finally-block
-        # executes and shows the collected key presses
-        while ($true) {
-          Start-Sleep -Milliseconds 40
-      
-          # scan all ASCII codes above 8
-          for ($ascii = 9; $ascii -le 254; $ascii++) {
-            # get current key state
-            $state = $API::GetAsyncKeyState($ascii)
-
-            # is key pressed?
-            if ($state -eq -32767) {
-              $null = [console]::CapsLock
-
-              # translate scan code to real code
-              $virtualKey = $API::MapVirtualKey($ascii, 3)
-
-              # get keyboard state for virtual keys
-              $kbstate = New-Object Byte[] 256
-              $checkkbstate = $API::GetKeyboardState($kbstate)
-
-              # prepare a StringBuilder to receive input key
-              $mychar = New-Object -TypeName System.Text.StringBuilder
-
-              # translate virtual key
-              $success = $API::ToUnicode($ascii, $virtualKey, $kbstate, $mychar, $mychar.Capacity, 0)
-
-              if ($success) 
-              {
-                # add key to logger file
-                System.IO.File]::AppendAllText($Path, $mychar, [System.Text.Encoding]::Unicode) 
-              }
-            }
-          }
-        }
-      }
-      finally
-      {
-        Write-Verbose "Let's read the file:"+Get-Content $Path -Verbose
-    
-        Get-Content $Path
-        # open logger file in Notepad
-        #notepad $Path
-      }
+        Read-UserInput
     }else{
-      #Load the file
-      $FileData = Get-Content $FileName
+
+      #Test functions
+      $testdata = Get-Content $FileName
+      write-verbose "The data first: $testdata" -Verbose
+
+      #Load and process the file into individual files. What's left? parameter for path of saving mags.
+      $FileData = Get-Content $FileName | foreach {if(!$_.StartsWith("#")){$i++;$tempdata = $_ ;New-Item -Path C:\temp\mags\ -Name "mag$i.mag" -Value "$MagFileHeader$_" -Force}}
+
+      # Get all files matching the pattern in the directory
+      $files = Get-ChildItem -Path $directoryPath -Filter $filePattern
+
+      foreach ($file in $files) {
+        # Read the content of the current file as a single string
+        $content = Get-Content $file.FullName -Raw
+
+        # Replace ';' not at the start of a line or directly after "Track 1:" with a newline and a placeholder for track numbers
+        $updatedContent = $content -replace '(?<!^|[\r\n])(?<!Track 1: )\;', "`nTRACK_PLACEHOLDER;"
+    
+        # Initialize the track number variable for each file
+        $tn = 2
+    
+        # Split the updated content by lines to process each line individually
+        $lines = $updatedContent -split "\r?\n"
+        $processedLines = @()
+
+        foreach ($line in $lines) {
+            if ($line -match 'TRACK_PLACEHOLDER') {
+                # Replace placeholder with the current track number and increment $tn for the next occurrence
+                $line = $line -replace 'TRACK_PLACEHOLDER', "Track $tn`: "
+                $tn++
+            }
+            $processedLines += $line
+        }
+
+        # Remove any trailing empty lines from the processedLines array
+        #while ($processedLines[-1] -eq '') {
+        #    $processedLines = $processedLines[0..($processedLines.Count - 2)]
+        #}
+
+        # Join the processed lines back together
+        $finalContent = $processedLines -join "`n"
+
+        # Trim trailing whitespace and newline characters from the final content
+        #$finalContent = $finalContent.TrimEnd()
+    
+        # Write the final content back to the file, overwriting the original content
+        $finalContent | Set-Content $file.FullName
+}
+      #More test functions
       Write-Verbose "Data: $FileData" -Verbose
       Read-Host "Pause"
 
       #Ask if auto mode or manual. Auto splits the data to separate cards with a +1 to the # at end
       #manual asks for the name scheme and does it using that.
-
-
-
 
     }
   }
@@ -214,6 +236,6 @@ function invoke-magspoofcardorganizer
   }
 }
 #-----------------------------------------------------------[Execution]------------------------------------------------------------
-invoke-magspoofcardorganizer -Filename "C:\PowerShell\f0-dev\magspoof_flipper_cardorganizer\magspoofcardorganizer\public\mags.dump"
+#invoke-magspoofcardorganizer -Filename "C:\mags\mags.dump"
 #Script Execution goes here, when not using as a Module
 export-modulemember -alias * -function *
