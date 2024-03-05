@@ -1,4 +1,4 @@
-# Project Title
+# Magspoof Flipper Card Organizer
 
 ## Table of Contents
 
@@ -57,10 +57,13 @@ And repeat
 
 ```
 until finished
+
 ```
 
 End with an example of getting some data out of the system or using it for a little demo.
 
 ## Usage <a name = "usage"></a>
 
-Add notes about how to use the system.
+Todo:
+- Add installer script to easily install module.
+- Instructions on how to run as a standalone script.
