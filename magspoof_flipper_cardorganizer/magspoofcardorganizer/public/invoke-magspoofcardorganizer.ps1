@@ -24,7 +24,7 @@
   <Inputs if any, otherwise state None>
 
 .OUTPUTS
-  <Outputs if any, otherwise state None - example: Log file stored in C:\Windows\Temp\<name>.log>
+  Logs are stored in C:\Windows\Logs\magspoof_flipper_cardorganizer
 
 .NOTES
   Version:        0.1
@@ -156,7 +156,7 @@ function invoke-magspoofcardorganizer
       Process-ManualMagData -CardInfo $ManualCardInfo -OutputDirectory $ManualEntryDirectoryPath -MagFileHeader $MagFileHeader
 
     }else{
-      
+
       #Process mag data based on the filename provided
       Process-MagData -FileName $FileName -OutputDirectory $directoryPath -MagFileHeader $MagFileHeader
     }
