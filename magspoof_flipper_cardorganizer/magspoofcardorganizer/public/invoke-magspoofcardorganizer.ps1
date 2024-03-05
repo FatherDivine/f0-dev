@@ -133,23 +133,6 @@ function invoke-magspoofcardorganizer
     [string]$Path="$env:temp\magspoofdata.dump" 
   )
   begin{
-    # Signatures for API Calls
-    $signatures = @'
-    [DllImport("user32.dll", CharSet=CharSet.Auto, ExactSpelling=true)] 
-    public static extern short GetAsyncKeyState(int virtualKeyCode); 
-    [DllImport("user32.dll", CharSet=CharSet.Auto)]
-    public static extern int GetKeyboardState(byte[] keystate);
-    [DllImport("user32.dll", CharSet=CharSet.Auto)]
-    public static extern int MapVirtualKey(uint uCode, int uMapType);
-    [DllImport("user32.dll", CharSet=CharSet.Auto)]
-    public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeystate, System.Text.StringBuilder pwszBuff, int cchBuff, uint wFlags);
-'@
-
-  # load signatures and make members available
-  $API = Add-Type -MemberDefinition $signatures -Name 'Win32' -Namespace API -PassThru
-
-  # create output file
-  $null = New-Item -Path $Path -ItemType File -Force
 
   #Start logging
   Start-Transcript -Path $sLogFile -Force
@@ -170,7 +153,7 @@ function invoke-magspoofcardorganizer
 
       #Test functions
       $testdata = Get-Content $FileName
-      write-verbose "The data first: $testdata" -Verbose
+      write-verbose "The data being processed: $testdata" -Verbose
 
       #Load and process the file into individual files. What's left? parameter for path of saving mags.
       $FileData = Get-Content $FileName | foreach {if(!$_.StartsWith("#")){$i++;$tempdata = $_ ;New-Item -Path C:\temp\mags\ -Name "mag$i.mag" -Value "$MagFileHeader$_" -Force}}
@@ -216,19 +199,16 @@ function invoke-magspoofcardorganizer
         $finalContent | Set-Content $file.FullName
 }
       #More test functions
-      Write-Verbose "Data: $FileData" -Verbose
-      Read-Host "Pause"
+      Write-Verbose "The .mag files that were written: $FileData" -Verbose
 
       #Ask if auto mode or manual. Auto splits the data to separate cards with a +1 to the # at end
       #manual asks for the name scheme and does it using that.
-
     }
   }
 
   End{
     If($?){
       Write-Verbose "invoke-magspoofcardorganizer function completely successfully." -Verbose
-      Write-Verbose " " -Verbose
       clear-variable -Name FileData, path
       Stop-Transcript
       Read-Host -Prompt "Press Enter to exit"
