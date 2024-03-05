@@ -78,15 +78,8 @@ If (!(Test-Path "C:\Windows\Logs\magspoof_flipper_cardorganizer")){New-Item -Ite
 #Script Version
 $sScriptVersion = "0.1"
 
-#Log File Info
-$sLogPath = "C:\Windows\Logs\magspoof_flipper_cardorganizer"
-$sLogName = "invoke-magspoofcardorganizer$date.log"
-$sLogFile = Join-Path -Path $sLogPath -ChildPath $sLogName
-
-
 #Variables
 $date = Get-Date -Format "-MM-dd-yyyy-HH-mm"
-#$tn = 2 #track number
 $directoryPath = "C:\temp\mags\"
 $filePattern = "*.mag"
 
@@ -97,6 +90,11 @@ Version: 1
 # Mag device track data
 Track 1: '
 )
+
+#Log File Info
+$sLogPath = "C:\Windows\Logs\magspoof_flipper_cardorganizer"
+$sLogName = "invoke-magspoofcardorganizer$date.log"
+$sLogFile = Join-Path -Path $sLogPath -ChildPath $sLogName
 
 #Aliases
 New-Alias -Name magorganizer -value invoke-magspoofcardorganizer -Description "Organizes magspoof-based data."
@@ -141,14 +139,19 @@ function invoke-magspoofcardorganizer
   Started processing at $([DateTime]::Now).`n`r
   ***************************************************************************************************`n`r
   `n`r
-  Running script version $ScriptVersion.`n`r
+  Running script version $sScriptVersion.`n`r
   `n`r
   ***************************************************************************************************`n`r
   " -Verbose
 }
   process{
-    If ($null -eq $FileName){  
-        Read-UserInput
+    If ($null -eq $FileName){ 
+
+      #Grab the user input using a private function and bring it back here
+      $ManualCardInfo = Read-UserInput
+      Write-Verbose "User input captured: $ManualCardInfo" -Verbose
+      Write-Verbose "Currently, the code isn't implemented to process manual entries (SOON!)" -Verbose
+
     }else{
 
       #Test functions
@@ -156,7 +159,7 @@ function invoke-magspoofcardorganizer
       write-verbose "The data being processed: $testdata" -Verbose
 
       #Load and process the file into individual files. What's left? parameter for path of saving mags.
-      $FileData = Get-Content $FileName | foreach {if(!$_.StartsWith("#")){$i++;$tempdata = $_ ;New-Item -Path C:\temp\mags\ -Name "mag$i.mag" -Value "$MagFileHeader$_" -Force}}
+      $FileData = Get-Content $FileName | ForEach-Object {if(!$_.StartsWith("#")){$i++;New-Item -Path C:\temp\mags\ -Name "mag$i.mag" -Value "$MagFileHeader$_" -Force}}
 
       # Get all files matching the pattern in the directory
       $files = Get-ChildItem -Path $directoryPath -Filter $filePattern
@@ -184,7 +187,7 @@ function invoke-magspoofcardorganizer
             $processedLines += $line
         }
 
-        # Remove any trailing empty lines from the processedLines array
+        # Remove any trailing empty lines from the processedLines array. Doesn't work currently.
         #while ($processedLines[-1] -eq '') {
         #    $processedLines = $processedLines[0..($processedLines.Count - 2)]
         #}
@@ -192,7 +195,7 @@ function invoke-magspoofcardorganizer
         # Join the processed lines back together
         $finalContent = $processedLines -join "`n"
 
-        # Trim trailing whitespace and newline characters from the final content
+        # Trim trailing whitespace and newline characters from the final content. Doesn't work currently
         #$finalContent = $finalContent.TrimEnd()
     
         # Write the final content back to the file, overwriting the original content

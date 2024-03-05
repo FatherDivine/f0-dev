@@ -1,11 +1,12 @@
-﻿function Read-UserInput {
+﻿#Created by FatherDivine & ChatGPT 3/5/2024
+function Read-UserInput {
     begin {
         # Initialization code can go here
         $userInput = @() # Initialize an array to hold user input
-        #Our incrementer
+        #Incrementer to keep track of what card # is being processed
         $i = 1
     }
-
+    
     process {
             Write-Host "Start scanning cards (Type 'Stop' and enter key to stop reading):"
 
@@ -16,11 +17,7 @@
                 } $i++
             } while ($inputLine -ne 'Stop')
 
-            Write-Host "`nYou entered 'Stop'. Stopping input."
-
-            # Add processing logic here for $userInput
-            Write-Verbose "Here's the userinput: $userInput" -Verbose
-        
+            Write-Host "`nYou entered 'Stop'. Stopping input."       
         else {
             # Logic to handle file input goes here
         }
@@ -29,6 +26,8 @@
     end {
         # Any cleanup or final processing can go here
         # For example, processing the collected $userInput
+        #This line allows the data to be sent back to the original script
+        #as long as the call to this function is within a variable: "$TestVar = Read-UserInput"
+        return $userInput
     }
 }
-#export-modulemember -alias * -function *
