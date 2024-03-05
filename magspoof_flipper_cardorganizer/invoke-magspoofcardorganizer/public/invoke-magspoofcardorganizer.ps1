@@ -33,16 +33,26 @@
   <Outputs if any, otherwise state None - example: Log file stored in C:\Windows\Temp\<name>.log>
 
 .NOTES
-  Version:        1.0
+  Version:        0.1
   Author:         Father Divine
   Creation Date:  3/4/2024
   Purpose/Change: Initial script development
 
 .LINK
-GitHub README or script link
+https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
 
 .EXAMPLE
-  <Example goes here. Repeat this attribute for more than one example>
+  invoke-magspoofcardorganizer -filepath c:\users\username\desktop\magspoof.dump
+
+  Opens a file for organizing
+
+.EXAMPLE
+  invoke-magspoofcardorganizer -file c:\magspoofcards.txt
+
+  Opens a file for organizing (using the file alias for filepath)
+
+.EXAMPLE
+  test.
 #>
 #---------------------------------------------------------[Force Module Elevation]--------------------------------------------------------
 #With this code, the script/module/function won't run unless elevated, thus local users can't use off the bat.
@@ -68,86 +78,73 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 #Set Error Action to Silently Continue
 $ErrorActionPreference = "SilentlyContinue"
 
-#Dot Source required Function Libraries
-#. "${PSScriptRoot}\Logging_Functions.ps1"
-
-Write-Verbose "`r`nLogging-Functions for basic logging functionality in all scripts." -Verbose
-#If (!(Test-Path "C:\Program Files\WindowsPowerShell\Modules\Logging-Functions\")){
-  Write-Verbose 'Downloading the latest Logging-Functions module and placing in C:\Program Files\WindowsPowerShell\Modules\Logging-Functions\' -Verbose
-  Invoke-WebRequest -Uri "https://raw.githubusercontent.com/FatherDivine/Powershell-Scripts-Public/main/Modules/Logging-Functions/Logging-Functions.psm1" -OutFile (New-Item -Path 'C:\Program Files\WindowsPowerShell\Modules\Logging-Functions\Logging-Functions.psm1' -Force) -Verbose
-  Invoke-WebRequest -Uri "https://raw.githubusercontent.com/FatherDivine/Powershell-Scripts-Public/main/Modules/Logging-Functions/Logging-Functions.psd1" -OutFile (New-Item -Path 'C:\Program Files\WindowsPowerShell\Modules\Logging-Functions\Logging-Functions.psd1' -Force) -Verbose
-#}
-Write-Verbose "`r`nInvoke-Ping, the fastest way to only send cmdlets to a PC that's online. Saves time from sending cmdlets to offline PCs."
-#If (!(Test-Path "C:\Program Files\WindowsPowerShell\Modules\Invoke-Ping\")){
-    Write-Verbose 'Downloading the latest Logging-Functions module and placing in C:\Program Files\WindowsPowerShell\Modules\Logging-Functions\' -Verbose
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/FatherDivine/Powershell-Scripts-Public/main/Modules/Invoke-Ping/Invoke-Ping/Invoke-Ping.psd1" -OutFile (New-Item -Path 'C:\Program Files\WindowsPowerShell\Modules\Invoke-Ping\Invoke-Ping.psd1' -Force) -Verbose
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/FatherDivine/Powershell-Scripts-Public/main/Modules/Invoke-Ping/Invoke-Ping/Invoke-Ping.psm1" -OutFile (New-Item -Path 'C:\Program Files\WindowsPowerShell\Modules\Invoke-Ping\Invoke-Ping.psm1' -Force) -Verbose
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/FatherDivine/Powershell-Scripts-Public/main/Modules/Invoke-Ping/Invoke-Ping/Public/Invoke-Ping.ps1" -OutFile (New-Item -Path 'C:\Program Files\WindowsPowerShell\Modules\Invoke-Ping\Public\Invoke-Ping.ps1' -Force) -Verbose
-#}
-
-#Import Modules
-Import-Module -Name Logging-Functions -DisableNameChecking
-
 #Create the Log folder if non-existant
-If (!(Test-Path "C:\Windows\Logs\<FolderName>")){New-Item -ItemType Directory "C:\Windows\Logs\<FolderName>\" -Force}
+If (!(Test-Path "C:\Windows\Logs\magspoof_flipper_cardorganizer")){New-Item -ItemType Directory "C:\Windows\Logs\magspoof_flipper_cardorganizer\" -Force}
 
 #----------------------------------------------------------[Declarations]----------------------------------------------------------
 
 #Script Version
-$sScriptVersion = "1.0"
+$sScriptVersion = "0.1"
 
 #Variables
 $date = Get-Date -Format "-MM-dd-yyyy-HH-mm"
 
 #Log File Info
-$sLogPath = "C:\Windows\Logs\<FolderName>"
-$sLogName = "<script_name>.log"
+$sLogPath = "C:\Windows\Logs\magspoof_flipper_cardorganizer"
+$sLogName = "invoke-magspoofcardorganizer$date.log"
 $sLogFile = Join-Path -Path $sLogPath -ChildPath $sLogName
 
 #-----------------------------------------------------------[Functions]------------------------------------------------------------
 
-<#
-
-Function <FunctionName>{
+Function invoke-magspoofcardorganizer{
  # Param()
+<#
   .PARAMETER ComputerName
     Allows for QuickFix to be ran against a remote PC or list of
     remote PCs.
-
+#>
   [cmdletbinding()]
   Param(
+    [Alias("file")]
     [Parameter(Mandatory=$false,
     ValueFromPipeline=$true)]
-    [string[]]$ComputerName = 'localhost'
-  )
+    [string[]]$FileName = $null
+ ) 
   Begin{
-    Log-Start -LogPath $sLogPath -LogName $sLogName -ScriptVersion $sScriptVersion
-    Log-Write -LogPath $sLogFile -LineValue "<FunctionName> is running on: $ComputerName"
-    Log-Write -LogPath $sLogFile -LineValue "Begin Section"
+    #Start logging
+    Start-Transcript -Path $sLogFile -Force
+    Write-Verbose "`n
+    ***************************************************************************************************`n`r
+    Started processing at $([DateTime]::Now).`n`r
+    ***************************************************************************************************`n`r
+    `n`r
+    Running script version $ScriptVersion.`n`r
+    `n`r
+    ***************************************************************************************************`n`r
+    " -Verbose    
   }
 
   Process{
     Try{
-      <code goes here>
+
     }
 
     Catch{
-      Log-Error -LogPath $sLogFile -ErrorDesc $_.Exception -ExitGracefully $True
+      Write-Verbose "$_.Exception" -Verbose
       Break
     }
   }
 
   End{
     If($?){
-      Log-Write -LogPath $sLogFile -LineValue "<FunctionName> Function Completed Successfully."
-      Log-Write -LogPath $sLogFile -LineValue " "
+      Write-Verbose "invoke-magspoofcardorganizer function completely successfully."
+      Write-Verbose " " -Verbose
       Read-Host -Prompt "Press Enter to exit"
-      Log-Finish -LogPath $sLogFile
+      Stop-Transcript
     }
   }
 }
 
-#>
 
 #-----------------------------------------------------------[Execution]------------------------------------------------------------
 
