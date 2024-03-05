@@ -81,7 +81,8 @@ $sScriptVersion = "0.1"
 #Variables
 $date = Get-Date -Format "-MM-dd-yyyy-HH-mm"
 $directoryPath = "C:\temp\mags\"
-$filePattern = "*.mag"
+$ManualEntryDirectoryPath = "C:\temp\mags\manualentry\"
+#$filePattern = "*.mag"
 
 $MagFileHeader= @(
 '#Created with invoke-magspoofcardorganizer.ps1 
@@ -147,65 +148,17 @@ function invoke-magspoofcardorganizer
   process{
     If ($null -eq $FileName){ 
 
-      #Grab the user input using a private function and bring it back here
+      #Grab the user input using a private function and bring it back here for processing
       $ManualCardInfo = Read-UserInput
       Write-Verbose "User input captured: $ManualCardInfo" -Verbose
-      Write-Verbose "Currently, the code isn't implemented to process manual entries (SOON!)" -Verbose
+
+      #Process the manual card info and save to file
+      Process-ManualMagData -CardInfo $ManualCardInfo -OutputDirectory $ManualEntryDirectoryPath -MagFileHeader $MagFileHeader
 
     }else{
-
-      #Test functions
-      $testdata = Get-Content $FileName
-      write-verbose "The data being processed: $testdata" -Verbose
-
-      #Load and process the file into individual files. What's left? parameter for path of saving mags.
-      $FileData = Get-Content $FileName | ForEach-Object {if(!$_.StartsWith("#")){$i++;New-Item -Path C:\temp\mags\ -Name "mag$i.mag" -Value "$MagFileHeader$_" -Force}}
-
-      # Get all files matching the pattern in the directory
-      $files = Get-ChildItem -Path $directoryPath -Filter $filePattern
-
-      foreach ($file in $files) {
-        # Read the content of the current file as a single string
-        $content = Get-Content $file.FullName -Raw
-
-        # Replace ';' not at the start of a line or directly after "Track 1:" with a newline and a placeholder for track numbers
-        $updatedContent = $content -replace '(?<!^|[\r\n])(?<!Track 1: )\;', "`nTRACK_PLACEHOLDER;"
-    
-        # Initialize the track number variable for each file
-        $tn = 2
-    
-        # Split the updated content by lines to process each line individually
-        $lines = $updatedContent -split "\r?\n"
-        $processedLines = @()
-
-        foreach ($line in $lines) {
-            if ($line -match 'TRACK_PLACEHOLDER') {
-                # Replace placeholder with the current track number and increment $tn for the next occurrence
-                $line = $line -replace 'TRACK_PLACEHOLDER', "Track $tn`: "
-                $tn++
-            }
-            $processedLines += $line
-        }
-
-        # Remove any trailing empty lines from the processedLines array. Doesn't work currently.
-        #while ($processedLines[-1] -eq '') {
-        #    $processedLines = $processedLines[0..($processedLines.Count - 2)]
-        #}
-
-        # Join the processed lines back together
-        $finalContent = $processedLines -join "`n"
-
-        # Trim trailing whitespace and newline characters from the final content. Doesn't work currently
-        #$finalContent = $finalContent.TrimEnd()
-    
-        # Write the final content back to the file, overwriting the original content
-        $finalContent | Set-Content $file.FullName
-}
-      #More test functions
-      Write-Verbose "The .mag files that were written: $FileData" -Verbose
-
-      #Ask if auto mode or manual. Auto splits the data to separate cards with a +1 to the # at end
-      #manual asks for the name scheme and does it using that.
+      
+      #Process mag data based on the filename provided
+      Process-MagData -FileName $FileName -OutputDirectory $directoryPath -MagFileHeader $MagFileHeader
     }
   }
 
