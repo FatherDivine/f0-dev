@@ -21,6 +21,14 @@
 https://github.com/FatherDivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
 .EXAMPLE
   & .\magspoofcardorganizer-installer.ps1
+
+  After running the above command, you can now run the module from any
+  PowerShell session. To view help type:
+
+  Get-Help -Detailed invoke-magspoofcardorganizer
+
+
+
 #>
 #----------------------------------------------------------[Initialization & Declarations]----------------------------------------------------------
 

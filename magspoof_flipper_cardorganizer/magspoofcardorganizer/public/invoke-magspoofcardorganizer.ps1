@@ -110,6 +110,7 @@ function invoke-magspoofcardorganizer
     make sure you load the data into that file card after
     card in the native format the card reader writes (meaning
     don't press enter or any buttons in between card reads).
+  
   .EXAMPLE
     invoke-magspoofcardorganizer -Filename "C:\mags\mags.dump"
 
@@ -121,7 +122,6 @@ function invoke-magspoofcardorganizer
     on a HID-enabled reader (like the MSR90). It will output
     all the data to that notepad. Just save and load in this
     script.
-
 #>
   [cmdletbinding()]
   param(
