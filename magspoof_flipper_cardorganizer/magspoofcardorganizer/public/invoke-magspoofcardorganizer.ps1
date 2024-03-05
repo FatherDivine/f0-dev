@@ -78,13 +78,23 @@ If (!(Test-Path "C:\Windows\Logs\magspoof_flipper_cardorganizer")){New-Item -Ite
 #Script Version
 $sScriptVersion = "0.1"
 
-#Variables
-$date = Get-Date -Format "-MM-dd-yyyy-HH-mm"
-
 #Log File Info
 $sLogPath = "C:\Windows\Logs\magspoof_flipper_cardorganizer"
 $sLogName = "invoke-magspoofcardorganizer$date.log"
 $sLogFile = Join-Path -Path $sLogPath -ChildPath $sLogName
+
+
+#Variables
+$date = Get-Date -Format "-MM-dd-yyyy-HH-mm"
+$i = 0
+
+$MagFileHeader= @(
+'#Added by invoke-magspoofcardorganizer.ps1
+Filetype: Flipper Mag device
+Version: 1
+# Mag device track data
+Track 1: '
+)
 
 #Aliases
 New-Alias -Name magorganizer -value invoke-magspoofcardorganizer -Description "Organizes magspoof-based data."
@@ -137,7 +147,7 @@ function invoke-magspoofcardorganizer
   Running script version $ScriptVersion.`n`r
   `n`r
   ***************************************************************************************************`n`r
-  " -Verbose 
+  " -Verbose
 }
   process{
     If ($null -eq $FileName){  
@@ -189,8 +199,11 @@ function invoke-magspoofcardorganizer
         #notepad $Path
       }
     }else{
+      $testdata = Get-Content $FileName
+      write-verbose "The data first: $testdata" -Verbose
       #Load the file
-      $FileData = Get-Content $FileName
+      $FileData = Get-Content $FileName | foreach {if(!$_.StartsWith("#")){$i++;$tempdata = $_ ;New-Item -Path C:\temp\ -Name "test$i.txt" -Value "$MagFileHeader$_" -Force}}
+
       Write-Verbose "Data: $FileData" -Verbose
       Read-Host "Pause"
 
@@ -214,6 +227,6 @@ function invoke-magspoofcardorganizer
   }
 }
 #-----------------------------------------------------------[Execution]------------------------------------------------------------
-invoke-magspoofcardorganizer -Filename "C:\PowerShell\f0-dev\magspoof_flipper_cardorganizer\magspoofcardorganizer\public\mags.dump"
+invoke-magspoofcardorganizer -Filename "C:\mags\mags.dump"
 #Script Execution goes here, when not using as a Module
 export-modulemember -alias * -function *
