@@ -1,8 +1,8 @@
 #Global variables
-$script:TemplatePowerShellModule = 'Module-Name'
+$script:TemplatePowerShellModule = 'magspoofcardorganizer'
 $script:here = "$PSScriptRoot\..\$TemplatePowerShellModule"
-$script:pubFunctions = ('Function1','Function2')
-$script:privFunctions = ('Import-FunctionName3','Import-FunctionName4')
+$script:pubFunctions = ('invoke-magspoofcardorganizer')
+$script:privFunctions = ('Process-MagData','Process-ManualMagData','Read-UserInput')
 $script:Folders = ('Public','Private')
 
 Describe "$TemplatePowerShellModule PowerShell Module Tests" {
@@ -98,7 +98,7 @@ Describe 'Function Tests' {
                     $psFile = Get-Content -Path "$here\Private\$_.ps1" -ErrorAction Stop
                     $errors = $null
                     $null = [System.Management.Automation.PSParser]::Tokenize($psFile, [ref]$errors)
-                    $errors.count | Should be 0
+                    $errors.count | Should -be 0
                 }
             } # Context Private Function Tests
 } # end of describe block
