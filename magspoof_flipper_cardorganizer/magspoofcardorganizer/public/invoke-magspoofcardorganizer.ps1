@@ -88,8 +88,7 @@ $MagFileHeader= @(
 '#Created with invoke-magspoofcardorganizer.ps1 
 Filetype: Flipper Mag device
 Version: 1
-# Mag device track data
-Track 1: '
+# Mag device track data'
 )
 
 #Log File Info

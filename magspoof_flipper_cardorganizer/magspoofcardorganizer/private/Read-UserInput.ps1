@@ -49,7 +49,7 @@ function Read-UserInput {
         do {
             $inputLine = Read-Host "Card $i (Separate multiple cards with '|')"
             if ($inputLine -ne 'Stop') {
-                $userInput += $inputLine
+                $userInput += $inputLine+'|'
                 $i++
             }
         } while ($inputLine -ne 'Stop')

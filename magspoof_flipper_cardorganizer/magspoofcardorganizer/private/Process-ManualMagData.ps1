@@ -61,7 +61,7 @@ function Process-ManualMagData {
         $tracks = $card -split ';'
         foreach ($track in $tracks) {
             if (-not [string]::IsNullOrWhiteSpace($track)) {
-                $processedTracks += "Track $tn`: ;$track"
+                $processedTracks += "`nTrack $tn`: ;$track"
                 $tn++
             }
         }
