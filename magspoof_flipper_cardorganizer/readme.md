@@ -42,5 +42,7 @@ These instructions will get you a copy of the project up and running on your loc
 ## Usage <a name = "usage"></a>
 
 Todo:
-- Add installer script to easily install module.
-- Instructions on how to run as a standalone script.
+- Add installer script to easily install module. (DONE)
+- Instructions on how to run as a standalone script. (Partially done)
+- Turn $directoryPath & $ManualEntryDirectoryPath into command-line parameters so users can choose somewhere besides c:\temp\mags or c:\temp\mags\manualentry (This will be version in 0.2)
+- Add cool ASCII art (Version 0.2)
