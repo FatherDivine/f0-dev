@@ -45,8 +45,6 @@ https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
 
   Opens a file for organizing (using the file alias for filepath)
 
-.EXAMPLE
-  test.
 #>
 #---------------------------------------------------------[Force Module Elevation]--------------------------------------------------------
 #With this code, the script/module/function won't run unless elevated, thus local users can't use off the bat.
@@ -85,7 +83,8 @@ $ManualEntryDirectoryPath = "C:\temp\mags\manualentry\"
 #$filePattern = "*.mag"
 
 $MagFileHeader= @(
-'#Created with invoke-magspoofcardorganizer.ps1 
+'# Created with magspoof_flipper_cardorganizer
+# https://github.com/FatherDivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
 Filetype: Flipper Mag device
 Version: 1
 # Mag device track data
@@ -139,7 +138,7 @@ function invoke-magspoofcardorganizer
   Started processing at $([DateTime]::Now).`n`r
   ***************************************************************************************************`n`r
   `n`r
-  Running script version $sScriptVersion.`n`r
+  Running magspoof_flipper_cardorganizer version $sScriptVersion.`n`r
   `n`r
   ***************************************************************************************************`n`r
   " -Verbose
@@ -149,7 +148,9 @@ function invoke-magspoofcardorganizer
 
       #Grab the user input using a private function and bring it back here for processing
       $ManualCardInfo = Read-UserInput
-      Write-Verbose "User input captured: $ManualCardInfo" -Verbose
+      
+      #Test function
+      #Write-Verbose "User input captured: $ManualCardInfo" -Verbose
 
       #Process the manual card info and save to file
       Process-ManualMagData -CardInfo $ManualCardInfo -OutputDirectory $ManualEntryDirectoryPath -MagFileHeader $MagFileHeader
@@ -171,6 +172,6 @@ function invoke-magspoofcardorganizer
   }
 }
 #-----------------------------------------------------------[Execution]------------------------------------------------------------
-#invoke-magspoofcardorganizer -Filename "C:\mags\mags.dump"
 #Script Execution goes here, when not using as a Module
+#Example: invoke-magspoofcardorganizer -Filename "C:\mags\mags.dump"
 export-modulemember -alias * -function *

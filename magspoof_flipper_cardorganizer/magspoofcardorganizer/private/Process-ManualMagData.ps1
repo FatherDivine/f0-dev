@@ -13,11 +13,11 @@
   <Inputs if any, otherwise state None>
 
 .OUTPUTS
-  <Outputs if any, otherwise state None - example: Log file stored in C:\Windows\Temp\<name>.log>
+  Logs are stored in C:\Windows\Logs\magspoof_flipper_cardorganizer
 
 .NOTES
   Version:        0.1
-  Author:         Father Divine
+  Author:         FatherDivine & ChatGPT 3/5/2024
   Creation Date:  3/4/2024
   Purpose/Change: Initial script development
 
@@ -43,12 +43,10 @@ function Process-ManualMagData {
       [string]$MagFileHeader
   )
 
-  # Ensure the output directory exists
   if (-not (Test-Path -Path $OutputDirectory)) {
       New-Item -Path $OutputDirectory -ItemType Directory -Force
   }
 
-  # Split the input into individual cards using the '|' delimiter
   $cards = $CardInfo -split '\|'
   $cardIndex = 1
 
@@ -57,19 +55,24 @@ function Process-ManualMagData {
           $tn = 1
           $processedTracks = @()
           $tracks = $card -split ';'
-
           foreach ($track in $tracks) {
               if (-not [string]::IsNullOrWhiteSpace($track)) {
-                  $processedTracks += "`nTrack $tn`: ;$track"
+                  # Note: Removed the newline character from the start of each track line
+                  $processedTracks += "Track $tn`: ;$track"
                   $tn++
               }
           }
 
+          # Only proceed if there are processed tracks to avoid creating empty files
           if ($processedTracks.Count -gt 0) {
-              $output = $MagFileHeader + ($processedTracks -join "`n").Trim()
+              # Now, we explicitly add a newline character after the header and before the first track
+              # Ensure the header itself ends with a newline to avoid starting the first track on the same line
+              $output = $MagFileHeader.TrimEnd() + "`n" + ($processedTracks -join "`n").Trim()
+
               $fileName = "Card$cardIndex.mag"
               $filePath = Join-Path -Path $OutputDirectory -ChildPath $fileName
               Set-Content -Path $filePath -Value $output -Force
+
               Write-Verbose "Generated file: $filePath" -Verbose
               $cardIndex++
           }
