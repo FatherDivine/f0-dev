@@ -22,7 +22,7 @@
   Purpose/Change: Initial script development
 
 .LINK
-https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
+  https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
 
 .EXAMPLE
   invoke-magspoofcardorganizer -filepath c:\users\username\desktop\magspoof.dump
@@ -37,8 +37,6 @@ https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
   using the $MagFileHeader. $MagFileHead is the top lines of the .mag files.
 #>
 function Read-UserInput {
-  [cmdletbinding()]
-  param()
   begin {
       $userInput = @() # Initialize an array to hold user input
       $i = 1 # Used to track how many cards were inputted

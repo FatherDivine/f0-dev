@@ -1,5 +1,4 @@
-﻿#Template design originally remixed from https://github.com/MSAdministrator/TemplatePowerShellModule
-<#
+﻿<#
 .SYNOPSIS
   Organizes magspoof-based data.
 
@@ -33,7 +32,7 @@
   Purpose/Change: Initial script development
 
 .LINK
-https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
+  https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
 
 .EXAMPLE
   invoke-magspoofcardorganizer -filepath c:\users\username\desktop\magspoof.dump
@@ -44,7 +43,6 @@ https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
   invoke-magspoofcardorganizer -file c:\magspoofcards.txt
 
   Opens a file for organizing (using the file alias for filepath)
-
 #>
 #---------------------------------------------------------[Force Module Elevation]--------------------------------------------------------
 #With this code, the script/module/function won't run unless elevated, thus local users can't use off the bat.
@@ -58,13 +56,14 @@ if ( -not $Elevated ) {
 #--------------------------------------------------------------[Privilege Escalation]---------------------------------------------------------------
 
 #When admin rights are needed
+<#
 if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
 {
   $arguments = "& '" +$myinvocation.mycommand.definition + "'"
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   Break
 }
-
+#>
 #---------------------------------------------------------[Initialisations & Declarations]--------------------------------------------------------
 
 #Set Error Action to Silently Continue
@@ -126,22 +125,24 @@ function invoke-magspoofcardorganizer
     [Alias("file")]
     [Parameter(Mandatory=$false,
     ValueFromPipeline=$true)]
-    [string[]]$FileName = $null
-    #,[string]$Path="$env:temp\magspoofdata.dump"
+    [string[]]$FileName = $null,
+    [string]$Path="$env:temp\magspoofdata.dump"
   )
+
   begin{
 
   #Start logging
   Start-Transcript -Path $sLogFile -Force
   Write-Verbose "`n
-  ***************************************************************************************************`n`r
-  Started processing at $([DateTime]::Now).`n`r
-  ***************************************************************************************************`n`r
-  Running magspoof_flipper_cardorganizer version $sScriptVersion.`n`r
-  ***************************************************************************************************`n`r
-  " -Verbose
+***************************************************************************************************`n`r
+Started processing at $([DateTime]::Now).`n`r
+***************************************************************************************************`n`r
+Running magspoof_flipper_cardorganizer version $sScriptVersion.`n`r
+***************************************************************************************************`n`r
+" -Verbose
 
-}
+  }
+
   process{
     If ($null -eq $FileName){
 
@@ -172,5 +173,5 @@ function invoke-magspoofcardorganizer
 }
 #-----------------------------------------------------------[Execution]------------------------------------------------------------
 #Script Execution goes here, when not using as a Module
-#Example: invoke-magspoofcardorganizer -Filename "C:\mags\mags.dump"
+#Example: invoke-magspoofcardorganizer -Filename "C:\temp\mags.dump"
 export-modulemember -alias * -function *

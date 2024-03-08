@@ -22,7 +22,7 @@
   Purpose/Change: Initial script development
 
 .LINK
-https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
+  https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
 
 .EXAMPLE
   invoke-magspoofcardorganizer -filepath c:\users\username\desktop\magspoof.dump
@@ -37,7 +37,6 @@ https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
 #>
 
 function Process-MagData {
-  [cmdletbinding()]
   param(
     [string]$FileName,
     [string]$OutputDirectory,
@@ -52,7 +51,8 @@ function Process-MagData {
     $i = 0
 
     # Process each line (assumed each line is a separate card) from the file
-    $cards = Get-Content $FileName
+    try{$cards = Get-Content $FileName
+    }catch{Write-Verbose "Error! File likely does not exist: $_" -Verbose}
     foreach ($card in $cards) {
         if ($card -notmatch "^#") {
             $i++
@@ -77,5 +77,5 @@ function Process-MagData {
         }
     }
 
-    Write-Verbose "$i .mag files were processed and written to $OutputDirectory." -Verbose
+    Write-Verbose "`n`rMag files processed: $i`n`rOutput Directory: $OutputDirectory.`n`r" -Verbose
 }
