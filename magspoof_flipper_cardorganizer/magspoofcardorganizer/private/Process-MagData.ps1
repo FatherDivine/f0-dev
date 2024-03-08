@@ -3,7 +3,7 @@
   Processes magstrip data.
 
 .DESCRIPTION
-  This module/script processes the data generated 
+  This module/script processes the data generated
   from magstrip cards. It's meant to process a file
   that's saved in any format (I like .dump) using a
   "USB emulation keyboard interface" magstrip reader
@@ -37,11 +37,12 @@ https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
 #>
 
 function Process-MagData {
-    param(
-        [string]$FileName,
-        [string]$OutputDirectory,
-        [string]$MagFileHeader
-    )
+  [cmdletbinding()]
+  param(
+    [string]$FileName,
+    [string]$OutputDirectory,
+    [string]$MagFileHeader
+  )
 
     # Ensure the output directory exists
     if (-not (Test-Path -Path $OutputDirectory)) {
@@ -76,5 +77,5 @@ function Process-MagData {
         }
     }
 
-    Write-Verbose "The .mag files have been written to: $OutputDirectory" -Verbose
+    Write-Verbose "$i .mag files were processed and written to $OutputDirectory." -Verbose
 }

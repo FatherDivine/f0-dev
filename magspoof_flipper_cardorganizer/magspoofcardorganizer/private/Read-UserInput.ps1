@@ -3,9 +3,9 @@
   Reads user input.
 
 .DESCRIPTION
-  This module/script reads the user's manual magstrip  
+  This module/script reads the user's manual magstrip
   data from magstrip cards. This data is supplied via
-  on-screen entry typed in from a "USB emulation 
+  on-screen entry typed in from a "USB emulation
   keyboard interface" magstrip reader like the
   MSR90 USB magnetic cc reader.
 
@@ -37,13 +37,15 @@ https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
   using the $MagFileHeader. $MagFileHead is the top lines of the .mag files.
 #>
 function Read-UserInput {
+  [cmdletbinding()]
+  param()
   begin {
       $userInput = @() # Initialize an array to hold user input
       $i = 1 # Used to track how many cards were inputted
   }
-  
+
   process {
-      Write-Host "Start scanning cards (Type 'Stop' to stop reading):"
+      Write-Verbose "Start scanning cards (Type 'Stop' to stop reading):" -Verbose
 
       do {
           $inputLine = Read-Host "Card$i"
@@ -53,7 +55,7 @@ function Read-UserInput {
           }
       } while ($inputLine -ne 'Stop')
 
-      Write-Host "`nYou entered 'Stop'. Stopping input."
+      Write-Verbose "`nYou entered 'Stop'. Stopping input." -Verbose
   }
 
   end {

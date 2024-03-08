@@ -4,11 +4,11 @@
   Organizes magspoof-based data.
 
 .DESCRIPTION
-  This module/script oraganizes the data 
+  This module/script oraganizes the data
   generated from the magspoof app, particularly
   the version for the flipper zero. Version 0.1
-  of this module is based on the "MSR90 USB 
-  Swipe Magnetic Credit Card Reader 3 Tracks Mini 
+  of this module is based on the "MSR90 USB
+  Swipe Magnetic Credit Card Reader 3 Tracks Mini
   Smart Card Reader MSR605 MSR606" sold by Deftun
   on Amazon. A link to the device is found in the
   readme.md.
@@ -16,7 +16,7 @@
   What makes this device special is that it's a
   "USB emulation keyboard interface" that requires
   no driver or software. The reader basically emulates
-  a keyboard. Just plug the device, open a notepad/app 
+  a keyboard. Just plug the device, open a notepad/app
   (or in this case this app) and the card data will
   write directly onto whatever has your cursor's attention.
 
@@ -108,11 +108,11 @@ function invoke-magspoofcardorganizer
     make sure you load the data into that file card after
     card in the native format the card reader writes (meaning
     don't press enter or any buttons in between card reads).
-  
+
   .EXAMPLE
     invoke-magspoofcardorganizer -Filename "C:\mags\mags.dump"
 
-    This will load a file named "mags.dump" into the script 
+    This will load a file named "mags.dump" into the script
     for processing. The script will split each line into
     separate files (for each individual mag card) and also
     put each track into it's own track line. The best way to
@@ -126,8 +126,8 @@ function invoke-magspoofcardorganizer
     [Alias("file")]
     [Parameter(Mandatory=$false,
     ValueFromPipeline=$true)]
-    [string[]]$FileName = $null,
-    [string]$Path="$env:temp\magspoofdata.dump" 
+    [string[]]$FileName = $null
+    #,[string]$Path="$env:temp\magspoofdata.dump"
   )
   begin{
 
@@ -137,18 +137,17 @@ function invoke-magspoofcardorganizer
   ***************************************************************************************************`n`r
   Started processing at $([DateTime]::Now).`n`r
   ***************************************************************************************************`n`r
-  `n`r
   Running magspoof_flipper_cardorganizer version $sScriptVersion.`n`r
-  `n`r
   ***************************************************************************************************`n`r
   " -Verbose
+
 }
   process{
-    If ($null -eq $FileName){ 
+    If ($null -eq $FileName){
 
       #Grab the user input using a private function and bring it back here for processing
       $ManualCardInfo = Read-UserInput
-      
+
       #Test function
       #Write-Verbose "User input captured: $ManualCardInfo" -Verbose
 
@@ -167,7 +166,7 @@ function invoke-magspoofcardorganizer
       Write-Verbose "invoke-magspoofcardorganizer function completely successfully." -Verbose
       clear-variable -Name FileData, path
       Stop-Transcript
-      Read-Host -Prompt "Press Enter to exit"
+      #Read-Host -Prompt "Press Enter to exit"
     }
   }
 }

@@ -3,9 +3,9 @@
   Processes manual magstrip data.
 
 .DESCRIPTION
-  This module/script processes the data generated 
+  This module/script processes the data generated
   from magstrip cards. It's meant to process manual
-  on-screen entry typed in from a "USB emulation 
+  on-screen entry typed in from a "USB emulation
   keyboard interface" magstrip reader like the
   MSR90 USB magnetic cc reader.
 
@@ -37,6 +37,7 @@ https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
   using the $MagFileHeader. $MagFileHead is the top lines of the .mag files.
 #>
 function Process-ManualMagData {
+  [cmdletbinding()]
   param(
       [string]$CardInfo,
       [string]$OutputDirectory,
