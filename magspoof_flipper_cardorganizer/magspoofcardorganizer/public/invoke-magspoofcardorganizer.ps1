@@ -88,8 +88,8 @@ $MagFileHeader= @(
 '#Created with invoke-magspoofcardorganizer.ps1 
 Filetype: Flipper Mag device
 Version: 1
-# Mag device track data'
-)
+# Mag device track data
+')
 
 #Log File Info
 $sLogPath = "C:\Windows\Logs\magspoof_flipper_cardorganizer"
