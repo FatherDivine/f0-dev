@@ -38,26 +38,24 @@ https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
 #>
 #Created by FatherDivine & ChatGPT 3/5/2024
 function Read-UserInput {
-    begin {
-        $userInput = @() # Initialize an array to hold user input
-        $i = 1
-    }
-    
-    process {
-        Write-Verbose "Start scanning cards (Type 'Stop' to stop reading):" -Verbose
+  begin {
+      $userInput = @() # Initialize an array to hold user input
+  }
+  
+  process {
+      Write-Host "Start scanning cards (Type 'Stop' to stop reading):"
 
-        do {
-            $inputLine = Read-Host "Card $i (Separate multiple cards with '|')"
-            if ($inputLine -ne 'Stop') {
-                $userInput += $inputLine+'|'
-                $i++
-            }
-        } while ($inputLine -ne 'Stop')
+      do {
+          $inputLine = Read-Host "Card"
+          if ($inputLine -ne 'Stop') {
+              $userInput += $inputLine
+          }
+      } while ($inputLine -ne 'Stop')
 
-        Write-Verbose "`nYou entered 'Stop'. Stopping input." -Verbose
-    }
+      Write-Host "`nYou entered 'Stop'. Stopping input."
+  }
 
-    end {
-        return $userInput -join '|' # Join multiple inputs with '|' as a delimiter
-    }
+  end {
+      return $userInput -join '|' # Join multiple inputs with '|' as a delimiter
+  }
 }

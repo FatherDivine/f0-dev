@@ -37,44 +37,42 @@ https://github.com/fatherdivine/f0-dev/tree/main/magspoof_flipper_cardorganizer
   using the $MagFileHeader. $MagFileHead is the top lines of the .mag files.
 #>
 function Process-ManualMagData {
-    param(
-        [string]$CardInfo,
-        [string]$OutputDirectory,
-        [string]$MagFileHeader
-    )
+  param(
+      [string]$CardInfo,
+      [string]$OutputDirectory,
+      [string]$MagFileHeader
+  )
 
-    # Check if the output directory exists; if not, create it
-    if (-not (Test-Path -Path $OutputDirectory)) {
-        New-Item -Path $OutputDirectory -ItemType Directory -Force
-    }
-    
-    # Split the input into individual cards using the '|' delimiter
-    $cards = $CardInfo -split '\|'
-    $cardIndex = 1
+  # Ensure the output directory exists
+  if (-not (Test-Path -Path $OutputDirectory)) {
+      New-Item -Path $OutputDirectory -ItemType Directory -Force
+  }
 
-    foreach ($card in $cards) {
-        # Initialize for each card
-        $tn = 1
-        $processedTracks = @()
+  # Split the input into individual cards using the '|' delimiter
+  $cards = $CardInfo -split '\|'
+  $cardIndex = 1
 
-        # Split the current card by semicolons to identify the tracks
-        $tracks = $card -split ';'
-        foreach ($track in $tracks) {
-            if (-not [string]::IsNullOrWhiteSpace($track)) {
-                $processedTracks += "`nTrack $tn`: ;$track"
-                $tn++
-            }
-        }
+  foreach ($card in $cards) {
+      if (-not [string]::IsNullOrWhiteSpace($card)) {
+          $tn = 1
+          $processedTracks = @()
+          $tracks = $card -split ';'
 
-        # Combine header and tracks for the current card
-        $output = $MagFileHeader + $processedTracks -join "`n"
-        
-        # Define and write the output for the current card to a .mag file
-        $fileName = "Card$cardIndex.mag"
-        $filePath = Join-Path -Path $OutputDirectory -ChildPath $fileName
-        $output | Set-Content -Path $filePath -Force
+          foreach ($track in $tracks) {
+              if (-not [string]::IsNullOrWhiteSpace($track)) {
+                  $processedTracks += "`nTrack $tn`: ;$track"
+                  $tn++
+              }
+          }
 
-        Write-Verbose "Generated file: $filePath" -Verbose
-        $cardIndex++
-    }
+          if ($processedTracks.Count -gt 0) {
+              $output = $MagFileHeader + ($processedTracks -join "`n").Trim()
+              $fileName = "Card$cardIndex.mag"
+              $filePath = Join-Path -Path $OutputDirectory -ChildPath $fileName
+              Set-Content -Path $filePath -Value $output -Force
+              Write-Verbose "Generated file: $filePath" -Verbose
+              $cardIndex++
+          }
+      }
+  }
 }
