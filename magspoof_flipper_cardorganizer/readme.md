@@ -9,8 +9,6 @@
 
 ## About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
-
 https://www.amazon.com/MSR90-Magnetic-Credit-Reader-Deftun/dp/B01DUB4GVO/ref=cm_cr_arp_d_product_top?ie=UTF8
 
   - MSR90 is a USB emulation keyboard interface 
@@ -33,7 +31,7 @@ ISO7811, AAMVA, CA DMV and most other card data formats.
 
 ## Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+More to come later when I have time to write this all up<br>
 
 ### Prerequisites
 
