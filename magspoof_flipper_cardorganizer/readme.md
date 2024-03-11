@@ -44,3 +44,4 @@ Todo:
 - Instructions on how to run as a standalone script. (Partially done)
 - Turn $directoryPath & $ManualEntryDirectoryPath into command-line parameters so users can choose somewhere besides c:\temp\mags or c:\temp\mags\manualentry (This will be version in 0.2)
 - Add cool ASCII art (Version 0.2)
+- Conversion to Powershell Core (for Linux, OSX)
