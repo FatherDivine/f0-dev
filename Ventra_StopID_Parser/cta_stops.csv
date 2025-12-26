@@ -1,0 +1,435 @@
+stop_id,stop_name
+16959,Milwaukee & Laramie (CTA 5436)
+003B,Jefferson Park Transit Cntr (CTA 41280)
+003E,O'Hare (South-bnd to Forest Prk) (CTA 40890)
+1,Jackson & Austin Terminal
+2,5900 W Jackson
+4,5700 W Jackson
+6,Jackson & Lotus
+7,5351 W Jackson
+8,Jackson & Lockwood
+9,Jackson & Laramie
+10,Jackson & Leamington
+11,5047 W Jackson
+12,Jackson & Lavergne
+13,4849 W Jackson
+14,Jackson & Cicero
+15,Jackson & Kilpatrick
+16,Jackson & Kenton
+18,Jackson & Kilbourn
+19,Jackson & Kostner
+20,Jackson & Kildare
+21,Jackson & Keeler
+22,Jackson & Karlov
+23,Jackson & Pulaski
+24,Jackson & Springfield
+25,Jackson & Hamlin
+26,Jackson & Central Park
+27,Jackson & St. Louis
+29,Jackson & Spaulding
+30,Jackson & Kedzie
+31,Jackson & Albany
+32,Jackson & Sacramento
+34,Jackson & California
+36,2609 W Jackson
+38,Jackson & Western
+39,Jackson & Oakley
+40,Jackson & Leavitt
+41,Jackson & Hoyne
+42,Jackson & Damen
+44,Damen & Congress
+48,Harrison & Wood
+51,Ashland & Van Buren
+52,Malcolm X College
+53,Jackson & Ogden
+54,Jackson & Paulina
+55,Jackson & Ashland
+56,Jackson & Laflin
+57,Jackson & Loomis
+59,Jackson & Racine
+60,Jackson & Aberdeen
+61,Jackson & Morgan
+63,Jackson & Peoria
+64,Jackson & Halsted
+65,Jackson & Desplaines
+67,Jackson & Canal
+68,Jackson & Franklin
+69,Jackson & Financial Place
+70,Jackson & Dearborn
+71,Jackson & State
+72,Jackson & Wabash
+73,Michigan & Van Buren/Ida B. Wells
+74,Congress Plaza & Michigan
+75,Michigan & Van Buren
+76,Michigan & Jackson
+77,Adams & Wabash
+80,Adams & Wells
+84,Van Buren & Canal
+86,Van Buren & Jefferson
+88,Van Buren & Halsted
+89,Van Buren & Peoria
+92,Van Buren & Aberdeen
+93,Van Buren & Racine
+96,Van Buren & Laflin
+97,Van Buren & Ashland
+99,Van Buren & Ogden
+100,1900 W Van Buren
+101,Van Buren & Damen
+17997,Ashland & 45th Street
+17998,Ashland & 48th Street
+18000,Ashland & 61st Street
+18001,Ashland & 59th Street
+18002,Ashland & 51st Street
+18004,Ashland & 48th Street
+18005,Cottage Grove & 67th Street
+18006,Cottage Grove & 65th Street
+18007,Cottage Grove & 64th Street
+18008,Cottage Grove & 64th Street
+18009,Halsted & Jackson
+18010,Broadway & Foster
+18011,Halsted & Randolph
+18012,5800 S Ellis
+18015,Dodge & Dempster
+18016,State & 94th Street
+18018,55th Street & University
+18019,Pershing & Ashland
+18020,Ashland & Pershing
+18022,51st Street & Loomis
+18023,51st Street & Racine
+18024,51st Street & Morgan
+18025,51st Street & Loomis
+18026,51st Street & Ashland
+18027,75th Street & Dorchester
+18029,59th Street & Kedzie
+18030,59th Street & Kedzie
+18031,59th Street & Pulaski
+18032,Garfield & LaSalle
+18033,Clark & Waveland
+18043,State & 51st Street
+18044,Harlem & Altgeld
+18045,Emerson & Dewey
+18046,Emerson & Dewey
+18047,Madison & Springfield
+18050,915 E. 60th Street
+18051,Cermak-McCormick Place Green Line Station
+18052,Cermak-McCormick Place Green Line Station
+18064,Armitage Station (Brown Line)
+18066,Forest Preserve Avenue & Oak Park
+18067,Forest Preserve Avenue & Oak Park
+18079,Beverly & 99th Street
+18083,Clark & Roscoe
+18084,69th Street & Damen
+18086,Fullerton & Western
+18088,Fullerton & Rockwell
+18090,Vincennes & 81st Street
+18091,Central & Division
+18092,Central & Division
+18093,Sacramento & Ohio
+18094,Cicero & Division
+18095,Cicero & Augusta
+18096,Cicero & Ohio
+18097,Cicero & Maypole
+18098,Cicero & Washington
+18099,Cicero & Jackson
+18100,Cicero & Washington
+18101,Cicero & Division
+18102,Cicero & Adams
+18103,Damen & 87th Street
+18106,Lawrence & Pulaski
+18107,Lawrence & Central Park
+18109,Lawrence & Central
+18110,Lawrence & Long
+18111,Lawrence & Long
+18112,Lawrence & Central
+18113,Northwest Hwy & Monitor
+18114,Milwaukee & Noble
+18116,Jackson & Francisco
+18117,Jackson & Francisco
+18118,Jackson & Washtenaw
+18119,Jackson & Spaulding
+18121,Yates & 95th Street
+18122,Washington & Clark/Dearborn
+18123,Madison & LaSalle
+18124,Madison & Franklin
+18125,Clinton & Madison
+18126,Madison & Dearborn/State
+18127,Sheridan & Birchwood
+18129,Harrison & Damen
+18130,Harrison & Western
+18131,Harrison & California
+18132,Irving Park & Forest Preserve
+18136,Field Museum East Parking Lot
+18152,Central Street & Jackson
+18153,Central Street & Jackson
+18154,State & Washington
+18155,Western Brown Line Station
+18156,Division & Clybourn
+18162,Division & Oakley
+18163,Division & Oakley
+18164,California & Archer
+18165,Division & Leavitt
+18166,Central & Montrose
+18173,Clark & Diversey
+18174,Roosevelt & Jefferson
+18175,Homan & Chicago
+18176,Homan & Chicago
+18180,Ashland & Marquette Rd
+18181,Ashland & 71st Street
+18184,UIC-Halsted Blue Line Station
+18185,Cicero & 55th Street
+18204,35th Street & Ashland
+18205,35th Street & Morgan
+18206,35th Street & Halsted
+18208,95th Street & Clyde
+18209,95th Street & Paxton
+18210,Pulaski & 86th Street
+18211,Pulaski & 87th Street
+18212,Halsted & 30th Street
+18213,Halsted & 29th Street
+18214,Wentworth & 26th Street
+18215,Halsted & 29th Street
+18220,Kedzie & Grand
+18222,Chicago & Clark
+18223,Chicago & State (Red Line)
+18224,Mies Van Der Rohe & Pearson
+18226,Archer & Menard
+18229,Exchange & 74th Place
+18230,75th Street & Colfax
+18231,75th Street & Colfax
+18232,31st Street & Wells
+18233,31st Street & Wells
+18234,31st Street & Morgan
+18235,31st Street & Lock
+18236,Archer & Lock
+18237,33rd Place & Rhodes
+18238,State & 35th Street
+18239,State & 31st Street
+18240,Halsted & Dickens
+18241,115th Street Metra Station
+18242,31st Street & Rhodes
+18243,31st Street & Michigan
+18244,31st Street & Michigan
+18245,31st Street & Canal
+18246,31st Street & Union
+18247,31st Street & Wallace
+18248,31st Street & Union
+18250,Union Station Transit Center
+18251,Union Station Transit Center
+18252,Union Station Transit Center
+18255,Clark & Huron
+18257,47th Street & Ashland
+18258,47th Street & Ashland
+18260,Belmont & Long
+18261,Kimball & Wrightwood
+18262,Kimball & Palmer
+18263,Belmont & Wolcott
+18264,Ridge & Ardmore
+18285,Sheridan & Gunnison
+18286,79th Street & Langley
+18287,Archer & Kedzie
+18288,Archer & St. Louis
+18289,Central Park & Cermak
+18290,43rd Street & Indiana
+18291,Pershing & State
+18292,Pershing & Vincennes
+18294,Ford City
+18295,Ford City
+18296,California & 63rd Street
+18297,Western & Adams
+18298,Western & Jackson
+18299,Western & Fulton
+18300,Broadway & Thorndale
+18301,Polk & Damen
+18302,Western & 62nd Street
+18303,Western & 62nd Street
+18304,Lake & Ridge
+18305,Fullerton & Southport
+18306,Fullerton & Greenview
+18308,Western & Devon
+18309,Western & Devon
+18310,Western & Touhy
+18311,Western & Foster
+18312,Western & 77th Street
+18313,Western & Hirsch
+18314,South Chicago & 73rd Street/Ellis
+18315,Van Buren & Throop
+18316,Blue Island & Leavitt
+18317,63rd Street Beach
+18318,Michigan & 14th Street
+18319,Fullerton & Greenview
+18320,Kedzie & Pratt
+18321,Damen & Fullerton
+18322,Ridge & Mulford
+18323,Grand & Chicago
+18329,Diversey & Clark/Broadway
+18330,Western & Elston/Diversey
+18331,Western & Belmont
+18333,79th Street & King Drive
+18334,Harrison & Ashland
+18335,Harrison & Loomis
+18336,Harrison & Loomis
+18337,Diversey & Austin
+18339,Harrison & Throop
+18340,Harrison & Throop
+18342,7061 N. Kedzie
+18345,Maple & Emerson
+18346,Western & Roscoe
+18347,Fullerton & Elston
+18348,Fullerton & Damen
+18352,Lawrence & Washtenaw
+18353,Cermak & Prairie
+18354,Sheridan & Emerson
+18355,Sheridan & Haven
+18356,Sheridan & Lincoln
+18357,Sheridan & Haven
+18358,Milwaukee & Caton
+18359,Milwaukee & Paulina
+18363,Cicero & 19th Street
+18364,Cicero & 23rd Street
+18365,Cicero & 24th Place
+18366,Cicero & 19th Street
+18367,Cicero & 29th Street
+18368,3700 S. Cicero
+18369,3700 S. Cicero
+18370,Cicero & 24th Place
+18374,Grand & Homan
+18375,Grand & Augusta
+18376,Grand & Augusta
+18377,Grand & Homan
+18379,Harlem & Augusta
+18382,Meade & 64th Place
+18383,26th Street & Homan
+18384,95th Red Line Station
+18385,Cottage Grove & 44th Street
+18386,Broadway & Roscoe
+18387,South Chicago & 69th Street
+18388,Central & Lawrence
+18389,Central & Lawrence
+18390,95th Red Line Station
+18393,Broadway & Lawrence
+18395,Roosevelt & Ashland
+18396,Michigan & Monroe
+18400,47th Street & Hoyne
+18401,Ashland & Farwell
+18402,Orleans & Oak
+18403,Harlem & 61st Place
+18404,State & 57th Street
+18412,Walton & Clark
+18414,Vincennes & 77th Street
+18415,8401 S Holland
+18417,47th Street & Laflin
+18418,South Chicago & Dante
+18419,Racine & 51st Street
+18420,Racine & 51st Street
+18421,Kedzie & 107th Street
+18422,Kedzie & 107th Street
+18424,Milwaukee & Belmont
+18425,Milwaukee & Keeler
+18427,Bryn Mawr & Nagle
+18428,Ogden & Western
+18429,Ogden & Washtenaw
+18430,Cottage Grove & 45th Street
+18431,Western & Irving Park
+18432,King Drive & 89th Street
+18433,Pullman Community Center
+18434,75th Street & Prairie
+18435,Midway Orange Line Station
+18436,Halsted & Lincoln/Fullerton
+18437,Western & Belle Plaine
+18438,Western & Berteau
+18439,Foster & Leclaire
+18441,Cermak & Wood
+18442,Cermak & Wood
+18443,Cermak & Damen
+18444,Cermak & Marshall Boulevard
+18445,Cermak & Western
+18447,Dearborn & Chicago
+18448,55th Street & Kenneth
+18449,Dodge & Main
+18450,Dodge & Oakton
+18451,Pullman Community Center
+18453,Montrose & Lincoln
+18454,Broadway & Cullom
+18455,Broadway & Cullom
+18468,Halsted & Armitage
+18469,Halsted & Armitage
+18471,Harlem & Talcott
+18472,Austin & Irving Park
+18473,Ashland & 70th Street
+18475,North Ave & Kolmar
+18476,North Ave & Keeler
+18477,North Ave & Kolmar
+18478,Vincennes & 79th Street
+18479,Vincennes & 76th Street
+18480,Vincennes & 79th Street
+18481,North Ave & Central Park
+18482,Armitage & Western
+18483,Armitage & Western
+18484,Kedzie & 19th Street
+18485,Kedzie & 19th Street
+18486,Harrison & Paulina
+18487,Chicago & Clark
+18488,State & 33rd Street
+18489,State & 33rd Street
+18491,North Ave & Lockwood
+18492,North Ave & Laramie
+18493,North Ave & Laramie
+18494,North Ave & Long
+18495,Illinois & Wells
+18497,Van Buren & Halsted
+18498,Jefferson & Van Buren
+18500,Diversey & Cicero
+18501,Ogden & Lawndale
+18504,Devon & Damen
+18505,Devon & Damen
+18506,Kedzie & Roosevelt
+18507,Kedzie & Arthington
+18508,Damen & Schiller
+18510,Wacker (Upper) & Michigan
+18511,115th Street & Indiana
+18512,115th Street & Michigan
+18513,115th Street & Michigan
+18514,115th Street & Perry
+18560,4720 W Foster
+18568,18th Street & Racine
+18569,Milwaukee & Armitage
+18570,North Ave & Oakley
+18571,Halsted & Cermak
+18573,Western & Touhy
+18575,Jackson & Racine
+18576,Pulaski & 13th Street
+18577,Pulaski & Roosevelt
+18578,Milwaukee & Irving Park/Cicero
+18580,Wilson & Broadway (Red Line)
+18581,Damen & 65th Street
+18582,Damen & Marquette Rd
+18587,Central & Waveland
+18588,Damen & 62nd Street
+18589,Damen & 57th Street
+18590,Damen & 56th Street
+18591,Damen & 57th Street
+18592,Damen & 63rd Street
+18593,Damen & 69th Street
+18595,Damen & 71st Street
+18596,Damen & 74th Street
+18597,Damen & 74th Street
+18598,Damen & 76th Street
+18599,111th Street & Kedzie
+18600,111th Street & Kedzie
+18601,111th Street & Central Park
+18602,111th Street & Central Park
+18603,71st Street & Dorchester
+18604,71st Street & Woodlawn
+18605,State & 93rd Street
+18606,State & 83rd Street
+18607,Lawrence & Keeler
+18608,Cicero & Belden
+18609,Howard & Oakley
+18612,Foster & Avers
+18613,State & Chicago (Red Line)
+18614,Kedzie & Cortland
+18615,Kedzie & Wabansia
+18616,Irving Park & Rockwell
+18617,Irving Park & Leavitt
+18618,Irving Park & Campbell
+18619,Ashland & Lake (Green & Pink Lines)
