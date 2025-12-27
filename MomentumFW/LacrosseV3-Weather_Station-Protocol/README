@@ -8,3 +8,10 @@ Anything else?
 FCC ID: OMOTX141V3
 Operates on 433.92 mhz
 If you need more info i'd be happy to provide some more
+
+
+The .c and .h files go in applications/external/weather_station/protocols. That's for all firmwares. and then you can build it from the root with
+
+./fbt launch APPSRC=weather_station
+
+which will build and place it on the flipper that's connected automatically. or you can just build (with or without launch) and place the fap yourself. that is created in "build/f7-firmware-C/.extapps/weather_station.fap "
