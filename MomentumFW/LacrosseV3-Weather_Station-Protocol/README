@@ -14,4 +14,8 @@ The .c and .h files go in applications/external/weather_station/protocols. That'
 
 ./fbt launch APPSRC=weather_station
 
+or 
+
+./fbt fap_weather_station (just to make the FAP and not launch/copy to the flipper connected to your PC)
+
 which will build and place it on the flipper that's connected automatically. or you can just build (with or without launch) and place the fap yourself. that is created in "build/f7-firmware-C/.extapps/weather_station.fap "
