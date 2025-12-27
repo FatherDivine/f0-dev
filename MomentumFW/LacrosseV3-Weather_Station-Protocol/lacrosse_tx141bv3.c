@@ -172,8 +172,8 @@ static void ws_protocol_lacrosse_tx141bv3_remote_controller(WSBlockGeneric* inst
     float temp_c = ((float)temp_raw - 500.0f) / 10.0f;
 
     instance->id = id;
-    instance->battery_low = battery_low ? WS_LOW_BATT : WS_NO_BATT;
-    instance->btn = test ? WS_BTN_PRESSED : WS_NO_BTN;
+    instance->battery_low = battery_low;
+    instance->btn = test;
     instance->channel = channel;
     instance->temp = temp_c;
     instance->humidity = WS_NO_HUMIDITY;
