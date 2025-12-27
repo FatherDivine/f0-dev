@@ -1,0 +1,10 @@
+adds support for v3 per this ticket: 
+https://github.com/flipperdevices/flipperzero-firmware/issues/4263
+
+Describe the enhancement you're suggesting.
+Add weather station support for LaCrosse TX141-BV3
+
+Anything else?
+FCC ID: OMOTX141V3
+Operates on 433.92 mhz
+If you need more info i'd be happy to provide some more
